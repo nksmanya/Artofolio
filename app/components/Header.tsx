@@ -13,11 +13,19 @@ export default function Header() {
   const { data: session } = useSession();
 
   return (
-    <header className="p-4 border-b border-cyan-500/50 sticky top-0 bg-gray-900/80 backdrop-blur-sm z-10">
+    <header className="p-4 border-b border-cyan-500/50 sticky top-0 bg-gray-900/80 backdrop-blur-md z-10">
       <nav className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
+        <Link href="/" className="text-2xl font-extrabold text-cyan-400 hover:text-cyan-300 transition-colors tracking-wider uppercase">
+          <span className="inline-block mr-2 h-3 w-3 rounded-full bg-cyan-400 animate-pulse" />
           Artopolio
         </Link>
+        <div className="hidden md:flex items-center gap-6 text-sm">
+          <Link href="#featured" className="text-cyan-300 hover:text-white transition">Featured</Link>
+          <Link href="#latest" className="text-cyan-300 hover:text-white transition">Latest</Link>
+          <Link href="/artwork/new" className="text-cyan-300 hover:text-white transition hidden md:inline">
+            {(session?.user as any)?.role === 'ADMIN' && 'New'}
+          </Link>
+        </div>
         <div className="flex items-center gap-4">
           {session ? (
             <>
@@ -39,7 +47,7 @@ export default function Header() {
             </>
           ) : (
             <CyberpunkButton onClick={() => signIn("github")}>
-              Sign In with GitHub
+              Sign In
             </CyberpunkButton>
           )}
         </div>

@@ -12,6 +12,7 @@ export default function EditArtworkPage({ params }: { params: { id: string } }) 
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [newImage, setNewImage] = useState<File | null>(null);
   const [isFeatured, setIsFeatured] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -42,10 +43,20 @@ export default function EditArtworkPage({ params }: { params: { id: string } }) 
     setSaving(true);
     setError(null);
     try {
+      let finalImageUrl = imageUrl;
+      if (newImage) {
+        const formData = new FormData();
+        formData.append('file', newImage);
+        formData.append('upload_preset', 'artopolio_preset');
+        const cloudinaryResponse = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, { method: 'POST', body: formData });
+        if (!cloudinaryResponse.ok) throw new Error('Image upload failed');
+        const cloudinaryData = await cloudinaryResponse.json();
+        finalImageUrl = cloudinaryData.secure_url;
+      }
       const res = await fetch(`/api/artwork/${params.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, description, imageUrl, isFeatured, tags: tags.split(',').map(t => t.trim()).filter(Boolean) }),
+        body: JSON.stringify({ title, description, imageUrl: finalImageUrl, isFeatured, tags: tags.split(',').map(t => t.trim()).filter(Boolean) }),
       });
       if (!res.ok) throw new Error('Failed to save');
       router.push(`/artwork/${params.id}`);
@@ -64,6 +75,10 @@ export default function EditArtworkPage({ params }: { params: { id: string } }) 
         <div>
           <label className="block text-sm font-medium text-cyan-300 mb-2">Title</label>
           <input value={title} onChange={(e) => setTitle(e.target.value)} className="w-full bg-gray-800 border-2 border-gray-600 rounded-md p-2 focus:border-cyan-500 focus:ring-cyan-500 transition" />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-cyan-300 mb-2">Replace Image</label>
+          <input type="file" accept="image/*" onChange={(e) => setNewImage(e.target.files?.[0] || null)} className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-cyan-600 file:text-white hover:file:bg-cyan-500" />
         </div>
         <div>
           <label className="block text-sm font-medium text-cyan-300 mb-2">Description</label>

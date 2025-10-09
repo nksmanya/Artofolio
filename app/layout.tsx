@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import AuthProvider from "./components/AuthProvider";
 import AnimatedBackground from "./components/AnimatedBackground";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
           <AnimatedBackground />
           <Header />
           <main className="container mx-auto px-4 py-8">{children}</main>
+          <Footer />
         </AuthProvider>
       </body>
     </html>
