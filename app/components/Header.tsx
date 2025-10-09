@@ -3,6 +3,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { CyberpunkButton } from "./CyberpunkButton";
+import SearchBar from "./SearchBar";
 
 /**
  * The main header and navigation bar for the application.
@@ -11,6 +12,7 @@ import { CyberpunkButton } from "./CyberpunkButton";
  */
 export default function Header() {
   const { data: session } = useSession();
+  const isMainAdmin = (session?.user?.email || "").toLowerCase() === (process.env.NEXT_PUBLIC_ADMIN_EMAIL || "").toLowerCase();
 
   return (
     <header className="p-4 border-b border-cyan-500/50 sticky top-0 bg-gray-900/80 backdrop-blur-md z-10">
@@ -22,14 +24,15 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-6 text-sm">
           <Link href="#featured" className="text-cyan-300 hover:text-white transition">Featured</Link>
           <Link href="#latest" className="text-cyan-300 hover:text-white transition">Latest</Link>
-          <Link href="/artwork/new" className="text-cyan-300 hover:text-white transition hidden md:inline">
-            {(session?.user as any)?.role === 'ADMIN' && 'New'}
-          </Link>
+          {isMainAdmin && (
+            <Link href="/artwork/new" className="text-cyan-300 hover:text-white transition hidden md:inline">New</Link>
+          )}
+          <SearchBar />
         </div>
         <div className="flex items-center gap-4">
           {session ? (
             <>
-              {(session.user as any)?.role === 'ADMIN' && (
+              {isMainAdmin && (
                 <Link href="/artwork/new">
                   <CyberpunkButton>Add Artwork</CyberpunkButton>
                 </Link>

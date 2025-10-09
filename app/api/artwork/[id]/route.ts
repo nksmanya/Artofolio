@@ -22,7 +22,7 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-  if (!isMainAdmin(session)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (!isMainAdmin(session)) return NextResponse.json({ error: "Forbidden: only main admin can update", hint: `Set ADMIN_EMAIL in .env.local. Session: ${session.user?.email || 'unknown'}` }, { status: 403 });
 
   try {
     const { title, description, imageUrl, tags, isFeatured } = await req.json();
@@ -58,7 +58,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 export async function DELETE(_: Request, { params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-  if (!isMainAdmin(session)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (!isMainAdmin(session)) return NextResponse.json({ error: "Forbidden: only main admin can delete", hint: `Set ADMIN_EMAIL in .env.local. Session: ${session.user?.email || 'unknown'}` }, { status: 403 });
 
   try {
     const existing = await prisma.artwork.findUnique({ where: { id: params.id } });

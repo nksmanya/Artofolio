@@ -1,7 +1,25 @@
 import ArtworkGrid from "./components/ArtworkGrid";
 import { prisma } from "./lib/prisma";
 
-export default async function Home() {
+export default async function Home({ searchParams }: { searchParams?: { [key: string]: string | undefined } }) {
+  const q = (searchParams?.q || "").trim();
+  const tagsCsv = (searchParams?.tags || "").trim();
+  const tagList = tagsCsv ? tagsCsv.split(',').map(t => t.trim().toLowerCase()).filter(Boolean) : [];
+
+  const whereRecent: any = {};
+  if (q) {
+    whereRecent.OR = [
+      { title: { contains: q, mode: 'insensitive' } },
+      { description: { contains: q, mode: 'insensitive' } },
+    ];
+  }
+  if (tagList.length) {
+    whereRecent.AND = [
+      ...(whereRecent.AND || []),
+      { tags: { some: { name: { in: tagList } } } },
+    ];
+  }
+
   const [featured, recent] = await Promise.all([
     prisma.artwork.findMany({
       where: { isFeatured: true },
@@ -10,6 +28,7 @@ export default async function Home() {
       take: 9,
     }),
     prisma.artwork.findMany({
+      where: whereRecent,
       include: { tags: true },
       orderBy: { createdAt: "desc" },
     }),

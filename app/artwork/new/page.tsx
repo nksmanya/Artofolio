@@ -63,7 +63,8 @@ export default function NewArtworkPage() {
       });
 
       if (!dbResponse.ok) {
-        throw new Error('Failed to save artwork data');
+        const errText = await dbResponse.text();
+        throw new Error(`Failed to save artwork data: ${dbResponse.status} ${errText}`);
       }
 
       router.push('/'); // Redirect to homepage on success

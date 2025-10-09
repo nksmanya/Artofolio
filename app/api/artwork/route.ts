@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { prisma } from "@/app/lib/prisma";
 import { NextResponse } from "next/server";
-import { isMainAdmin } from "@/app/lib/authz";
+import { isMainAdmin, getConfiguredAdminEmail } from "@/app/lib/authz";
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
@@ -13,7 +13,10 @@ export async function POST(req: Request) {
 
   // Only main admin can create artworks
   if (!isMainAdmin(session)) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({
+      error: "Forbidden: only main admin can create",
+      hint: `Set ADMIN_EMAIL or NEXT_PUBLIC_ADMIN_EMAIL to your admin email. Current session: ${session.user?.email || 'unknown'}, configured: ${getConfiguredAdminEmail() || 'not set'}`,
+    }, { status: 403 });
   }
 
   try {

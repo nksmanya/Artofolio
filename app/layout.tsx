@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Artopolio",
   description: "A cyberpunk portfolio for your art.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

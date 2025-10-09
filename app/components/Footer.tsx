@@ -9,10 +9,11 @@ export default function Footer() {
         <div>
           <h4 className="text-cyan-300 font-semibold">Contact</h4>
           <ul className="text-gray-300 text-sm mt-2 space-y-1">
-            <li><a className="hover:text-white" href="mailto:manya@example.com">manya@example.com</a></li>
-            <li><a className="hover:text-white" href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noreferrer">LinkedIn</a></li>
-            <li><a className="hover:text-white" href="https://github.com/your-github" target="_blank" rel="noreferrer">GitHub</a></li>
-            <li><a className="hover:text-white" href="https://your-portfolio.com" target="_blank" rel="noreferrer">Portfolio</a></li>
+            <li><a className="hover:text-white" href="mailto:nksmanya@gmail.com">nksmanya@gmail.com</a></li>
+            <li><a className="hover:text-white" href="https://www.linkedin.com/in/nksmanya" target="_blank" rel="noreferrer">LinkedIn</a></li>
+            <li><a className="hover:text-white" href="https://github.com/nksmanya" target="_blank" rel="noreferrer">GitHub</a></li>
+            <li><a className="hover:text-white" href="https://nksmanya.vercel.app" target="_blank" rel="noreferrer">Portfolio</a></li>
+            <li><a className="hover:text-white" href="https://in.pinterest.com/nksmanya/" target="_blank" rel="noreferrer">Pinterest</a></li>
           </ul>
         </div>
         <div>
@@ -23,7 +24,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="text-center text-gray-500 text-xs py-4">© {new Date().getFullYear()} Manya — All rights reserved.</div>
+      <div className="text-center text-gray-500 text-xs py-4">Built with ❤️ by <a className="hover:text-white" href="https://github.com/nksmanya" target="_blank" rel="noreferrer">Manya</a> © {new Date().getFullYear()} </div>
     </footer>
   );
 }
