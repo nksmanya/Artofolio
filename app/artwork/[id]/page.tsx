@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import CommentForm from "@/app/components/CommentForm";
 import ArtworkActions from "@/app/components/ArtworkActions";
+import { isMainAdmin } from "@/app/lib/authz";
 
 interface ArtworkDetailPageProps {
   params: {
@@ -32,6 +33,8 @@ export default async function ArtworkDetailPage({ params }: ArtworkDetailPagePro
   if (!artwork) {
     notFound();
   }
+
+  const canAdmin = isMainAdmin(session);
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -98,7 +101,7 @@ export default async function ArtworkDetailPage({ params }: ArtworkDetailPagePro
         artworkId={artwork.id}
         imageUrl={artwork.imageUrl}
         title={artwork.title}
-        isAdmin={!!(session && (session.user as any)?.role === 'ADMIN')}
+        isAdmin={canAdmin}
         baseUrl={process.env.NEXT_PUBLIC_BASE_URL}
       />
 

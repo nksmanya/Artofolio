@@ -12,14 +12,15 @@ import SearchBar from "./SearchBar";
  */
 export default function Header() {
   const { data: session } = useSession();
-  const isMainAdmin = (session?.user?.email || "").toLowerCase() === (process.env.NEXT_PUBLIC_ADMIN_EMAIL || "").toLowerCase();
+  const adminEnv = (process.env.NEXT_PUBLIC_ADMIN_EMAIL || process.env.ADMIN_EMAIL || "nksmanya@gmail.com").toLowerCase();
+  const isMainAdmin = (session?.user?.email || "").toLowerCase() === adminEnv;
 
   return (
     <header className="p-4 border-b border-cyan-500/50 sticky top-0 bg-gray-900/80 backdrop-blur-md z-10">
       <nav className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="text-2xl font-extrabold text-cyan-400 hover:text-cyan-300 transition-colors tracking-wider uppercase">
-          <span className="inline-block mr-2 h-3 w-3 rounded-full bg-cyan-400 animate-pulse" />
-          Artopolio
+        <Link href="/" className="text-2xl font-extrabold text-cyan-400 hover:text-cyan-300 transition-colors tracking-wider uppercase flex items-center gap-2">
+          <img src="/favicon.ico" alt="Artofolio" className="h-5 w-5" />
+          Artofolio
         </Link>
         <div className="hidden md:flex items-center gap-6 text-sm">
           <Link href="#featured" className="text-cyan-300 hover:text-white transition">Featured</Link>

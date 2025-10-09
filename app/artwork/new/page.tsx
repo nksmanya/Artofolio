@@ -14,6 +14,7 @@ export default function NewArtworkPage() {
   const [image, setImage] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isFeatured, setIsFeatured] = useState(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -59,6 +60,7 @@ export default function NewArtworkPage() {
           description,
           imageUrl,
           tags: tagArray,
+          isFeatured,
         }),
       });
 
@@ -99,6 +101,10 @@ export default function NewArtworkPage() {
             className="w-full bg-gray-800 border-2 border-gray-600 rounded-md p-2 focus:border-cyan-500 focus:ring-cyan-500 transition"
             required
           />
+        </div>
+        <div className="flex items-center gap-2">
+          <input id="featured" type="checkbox" checked={isFeatured} onChange={(e) => setIsFeatured(e.target.checked)} />
+          <label htmlFor="featured" className="text-cyan-300">Featured</label>
         </div>
         <div>
           <label htmlFor="description" className="block text-sm font-medium text-cyan-300 mb-2">Description</label>

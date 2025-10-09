@@ -36,7 +36,7 @@ export default async function Home({ searchParams }: { searchParams?: { [key: st
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-4xl font-bold text-center mb-8 text-cyan-400">Artopolio</h1>
+      <h1 className="text-4xl font-bold text-center mb-8 text-cyan-400">Artofolio</h1>
       {featured.length > 0 && (
         <section id="featured" className="w-full mb-10">
           <div className="flex items-center justify-between mb-4">

@@ -9,10 +9,10 @@ import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Artopolio",
-  description: "A cyberpunk portfolio for your art.",
+  title: "Artofolio",
+  description: "Artofolio — a neon-soaked showcase for your drawings and paintings.",
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.ico",
   },
 };
 

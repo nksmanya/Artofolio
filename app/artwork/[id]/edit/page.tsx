@@ -33,9 +33,10 @@ export default function EditArtworkPage({ params }: { params: { id: string } }) 
   }, [params.id]);
 
   if (status === 'loading' || loading) return <p className="p-6">Loading...</p>;
-  if (!session || (session.user as any)?.role !== 'ADMIN') {
-    router.push('/');
-    return null;
+  const adminEnv = (process.env.NEXT_PUBLIC_ADMIN_EMAIL || process.env.ADMIN_EMAIL || "nksmanya@gmail.com").toLowerCase();
+  const isMainAdmin = (session?.user?.email || "").toLowerCase() === adminEnv;
+  if (!session || !isMainAdmin) {
+    return <p className="p-6 text-center text-gray-400">Forbidden</p>;
   }
 
   const save = async (e: React.FormEvent) => {
