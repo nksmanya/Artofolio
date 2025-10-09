@@ -48,7 +48,7 @@ export default async function Home({ searchParams }: { searchParams?: { [key: st
       )}
       <section id="latest" className="w-full">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold text-cyan-400">Latest</h2>
+          <h2 className="text-2xl font-bold text-cyan-400">Gallery</h2>
         </div>
         <ArtworkGrid artworks={recent} />
       </section>

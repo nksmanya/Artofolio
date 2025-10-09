@@ -10,6 +10,7 @@ export default function LoginPage() {
       <p className="text-gray-400 text-center mb-6">Sign in to post comments. Admin can manage artworks.</p>
       <div className="flex justify-center">
         <CyberpunkButton onClick={() => signIn('github')}>Sign in with GitHub</CyberpunkButton>
+        <CyberpunkButton onClick={() => signIn('github')}>Admin Login</CyberpunkButton>
       </div>
     </div>
   );

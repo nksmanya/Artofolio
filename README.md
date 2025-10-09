@@ -1,69 +1,41 @@
-# Artofolio
+# Artopolio: An Art Portfolio
 
-A neon-cyberpunk art portfolio to showcase drawings and paintings with tags, comments, search, and a featured gallery. Built with Next.js App Router and Prisma.
+Artopolio is a full-stack personal art portfolio with a neon-cyberpunk aesthetic.  
+It allows a single administrator (you!) to showcase drawings and paintings, manage content with full CRUD functionality, and categorize everything with searchable tags.
 
-## Features
-- Admin-only CRUD for artworks (create, edit, delete, feature)
-- Public browsing with Featured and Latest sections
-- Comments (any signed-in user); author/admin can edit/delete
-- Tag + text search across title/description
-- Cloudinary image upload and cleanup on delete
-- Animated background, cyberpunk UI, responsive grid
 
 ## Tech Stack
-- Next.js 15 (App Router) + React 19
-- NextAuth (GitHub Provider)
-- Prisma + PostgreSQL
-- Cloudinary (image hosting)
-- Tailwind CSS v4
 
-## Admin & Authentication
-- Admin is determined by `ADMIN_EMAIL` (or `NEXT_PUBLIC_ADMIN_EMAIL`) in `.env.local`.
-- Only the admin can access CRUD actions and mark art as Featured.
-- Login via GitHub on `/login` or the header Sign In.
-- Admin helpers:
-  - `/admin` for shortcuts
-  - `/artwork/new` to create
-  - `/artwork/[id]/edit` to update
+- **Framework:** Next.js (App Router)  
+- **Styling:** Tailwind CSS  
+- **Authentication:** NextAuth.js  
+- **ORM:** Prisma  
+- **Database:** PostgreSQL (Supabase)  
+- **Image Hosting:** Cloudinary  
 
-## Getting Started
-1. Clone and install
-```bash
-npm i
-```
-2. Env setup (`.env.local`)
-```bash
-DATABASE_URL=postgres://...
-GITHUB_CLIENT_ID=...
-GITHUB_CLIENT_SECRET=...
-ADMIN_EMAIL=you@example.com
-NEXT_PUBLIC_BASE_URL=http://localhost:3000
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
-```
-3. Prisma
-```bash
-npx prisma generate
-# dev sync
-npx prisma db push
-# or migrations
-# npx prisma migrate dev -n init
-```
-4. Run
-```bash
-npm run dev
-```
 
-## Contributing
-Contributions are welcome! Feel free to open issues and PRs.
+## Core Features
+
+- **Admin-Only Access:** Securely locked down so only the designated admin can log in and manage content.  
+- **Full CRUD for Artworks:** Create, read, update, and delete artworks through a clean and intuitive interface.  
+- **GitHub Authentication:** Simple and secure login using NextAuth and the GitHub provider.  
+- **Dynamic Tagging System:** Assign multiple tags to each artwork. Clicking a tag filters the gallery to show related pieces.  
+- **Cloudinary Image Hosting:** Seamless and direct image uploads to Cloudinary, with automatic cleanup when an artwork is deleted.  
+- **Cyberpunk UI:** A modern, responsive design built with Tailwind CSS, featuring a dark theme, neon accents, and a clean grid layout.  
+- **Built on the Next.js App Router:** Utilizes the latest features of Next.js for a fast, modern web experience with both server and client components.
+
+
+## Contributing 
+
+Contributions are welcome! If you'd like to improve this project, feel free to fork the repository and submit a pull request.
+
 
 ## License
-MIT. See `LICENSE`.
 
-## Screenshots
-- Home: Featured + Latest grid
-- Artwork Detail: image, tags, comments, actions
-- Admin: create/edit forms with Featured toggle
+This project is licensed under the MIT License.
 
-## Feedback
-Have ideas or found a bug? Open an issue or reach out via email.
+## Contact
 
+If you have any questions or suggestions, feel free to reach out:
+
+**Manya** – [LinkedIn](https://www.linkedin.com/in/nksmanya)
