@@ -24,6 +24,12 @@ It allows a single administrator (you!) to showcase drawings and paintings, mana
 - **Cyberpunk UI:** A modern, responsive design built with Tailwind CSS, featuring a dark theme, neon accents, and a clean grid layout.  
 - **Built on the Next.js App Router:** Utilizes the latest features of Next.js for a fast, modern web experience with both server and client components.
 
+## Screenshots 
+![alt text](<Screenshot 2025-10-09 210610.png>)
+
+![alt text](<Screenshot 2025-10-09 210543.png>)
+
+![alt text](image.png)
 
 ## Contributing 
 
