@@ -10,6 +10,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
 
+  // Only admins can create artworks
+  if ((session.user as any)?.role !== 'ADMIN') {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   try {
     const { title, description, imageUrl, tags } = await req.json();
 

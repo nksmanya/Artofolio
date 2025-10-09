@@ -21,9 +21,11 @@ export default function Header() {
         <div className="flex items-center gap-4">
           {session ? (
             <>
-              <Link href="/artwork/new">
-                <CyberpunkButton>Add Artwork</CyberpunkButton>
-              </Link>
+              {(session.user as any)?.role === 'ADMIN' && (
+                <Link href="/artwork/new">
+                  <CyberpunkButton>Add Artwork</CyberpunkButton>
+                </Link>
+              )}
               <CyberpunkButton onClick={() => signOut()} className="bg-red-500 border-red-500 hover:bg-red-400 hover:border-red-400 shadow-[4px_4px_0px_0px_#b91c1c] hover:shadow-[6px_6px_0px_0px_#b91c1c] active:shadow-[2px_2px_0px_0px_#b91c1c]">
                 Sign Out
               </CyberpunkButton>

@@ -40,9 +40,11 @@ name          String?
 email         String?   @unique
 emailVerified DateTime?
 image         String?
+  role          Role      @default(USER)
 accounts      Account[]
 sessions      Session[]
 artworks      Artwork[]
+  comments      Comment[]
 }
 
 model VerificationToken {
@@ -63,10 +65,28 @@ updatedAt   DateTime @updatedAt
 author      User     @relation(fields: [authorId], references: [id])
 authorId    String
 tags        Tag[]
+  isFeatured  Boolean  @default(false)
+  comments    Comment[]
 }
 
 model Tag {
 id        String    @id @default(cuid())
 name      String    @unique
 artworks  Artwork[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  artwork   Artwork  @relation(fields: [artworkId], references: [id])
+  artworkId String
+}
+
+enum Role {
+  USER
+  ADMIN
 }

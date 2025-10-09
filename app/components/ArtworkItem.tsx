@@ -18,7 +18,10 @@ export default function ArtworkItem({ artwork }: { artwork: ArtworkWithTags }) {
   // The entire card is a link to a future detailed artwork page.
   // The link is currently a placeholder pointing to the artwork's ID.
   return (
-    <div className="border border-cyan-400/30 rounded-lg overflow-hidden group transition-all duration-300 hover:border-cyan-400/80 hover:shadow-lg hover:shadow-cyan-500/50">
+    <div className="relative border border-cyan-400/30 rounded-lg overflow-hidden group transition-all duration-300 hover:border-cyan-400/80 hover:shadow-lg hover:shadow-cyan-500/50">
+      { (artwork as any).isFeatured && (
+        <span className="absolute top-3 left-3 z-10 rounded bg-fuchsia-600 text-white text-xs font-bold px-2 py-1 shadow">FEATURED</span>
+      )}
       <Link href={`/artwork/${artwork.id}`}>
         <div className="relative aspect-square overflow-hidden">
           <Image
