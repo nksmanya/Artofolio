@@ -23,8 +23,8 @@ export default function Header() {
           Artofolio
         </Link>
         <div className="hidden md:flex items-center gap-6 text-sm">
-          <Link href="#featured" className="text-cyan-300 hover:text-white transition">Featured</Link>
-          <Link href="#latest" className="text-cyan-300 hover:text-white transition">Latest</Link>
+          <Link href="/#featured" className="text-cyan-300 hover:text-white transition">Featured</Link>
+          <Link href="/#latest" className="text-cyan-300 hover:text-white transition">Gallery</Link>
           {isMainAdmin && (
             <Link href="/artwork/new" className="text-cyan-300 hover:text-white transition hidden md:inline">New</Link>
           )}
@@ -41,6 +41,7 @@ export default function Header() {
               <CyberpunkButton onClick={() => signOut()} className="bg-red-500 border-red-500 hover:bg-red-400 hover:border-red-400 shadow-[4px_4px_0px_0px_#b91c1c] hover:shadow-[6px_6px_0px_0px_#b91c1c] active:shadow-[2px_2px_0px_0px_#b91c1c]">
                 Sign Out
               </CyberpunkButton>
+              {/* Admin button removed after login per request */}
               {session.user?.image && (
                  <img
                     src={session.user.image}
@@ -51,7 +52,7 @@ export default function Header() {
             </>
           ) : (
             <CyberpunkButton onClick={() => signIn("github")}>
-              Sign In
+              Sign In with GitHub
             </CyberpunkButton>
           )}
         </div>

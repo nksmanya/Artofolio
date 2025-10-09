@@ -60,7 +60,7 @@ export default async function ArtworkDetailPage({ params }: ArtworkDetailPagePro
         <div className="flex flex-col gap-4">
           <h1 className="text-4xl font-bold text-cyan-400">{artwork.title}</h1>
           {artwork.isFeatured && (
-            <span className="self-start rounded bg-fuchsia-600 text-white text-xs font-bold px-2 py-1">FEATURED</span>
+            <span className="self-start rounded bg-cyan-400 text-gray-900 text-xs font-bold px-2 py-1">FEATURED</span>
           )}
 
           {artwork.author && (
@@ -86,12 +86,13 @@ export default async function ArtworkDetailPage({ params }: ArtworkDetailPagePro
 
           <div className="flex flex-wrap gap-2 mt-4">
             {artwork.tags.map((tag) => (
-              <span
+              <button
                 key={tag.id}
-                className="px-3 py-1 bg-gray-700 text-cyan-300 text-sm font-semibold rounded-full"
+                className="px-3 py-1 bg-gray-800 border border-cyan-500/60 text-cyan-300 text-xs font-semibold rounded-full hover:bg-gray-700"
+                disabled
               >
-                #{tag.name}
-              </span>
+                {tag.name}
+              </button>
             ))}
           </div>
         </div>

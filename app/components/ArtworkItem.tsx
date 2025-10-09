@@ -20,7 +20,7 @@ export default function ArtworkItem({ artwork }: { artwork: ArtworkWithTags }) {
   return (
     <div className="relative border border-cyan-400/30 rounded-lg overflow-hidden group transition-all duration-300 hover:border-cyan-400/80 hover:shadow-lg hover:shadow-cyan-500/50">
       { (artwork as any).isFeatured && (
-        <span className="absolute top-3 left-3 z-10 rounded bg-fuchsia-600 text-white text-xs font-bold px-2 py-1 shadow">FEATURED</span>
+        <span className="absolute top-3 left-3 z-10 rounded bg-amber-400 text-gray-900 text-xs font-bold px-2 py-1 shadow">FEATURED</span>
       )}
       <Link href={`/artwork/${artwork.id}`}>
         <div className="relative aspect-square overflow-hidden">
@@ -36,8 +36,8 @@ export default function ArtworkItem({ artwork }: { artwork: ArtworkWithTags }) {
           <h3 className="text-xl font-bold text-white truncate">{artwork.title}</h3>
           <div className="flex flex-wrap gap-2 mt-2">
             {artwork.tags.map((tag) => (
-              <span key={tag.id} className="px-2 py-1 bg-gray-700 text-cyan-400 rounded-md text-sm">
-                #{tag.name}
+              <span key={tag.id} className="px-2 py-1 bg-gray-800 border border-cyan-500/60 text-cyan-300 rounded-full text-xs font-semibold">
+                {tag.name}
               </span>
             ))}
           </div>

@@ -1,41 +1,69 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Artofolio
+
+A neon-cyberpunk art portfolio to showcase drawings and paintings with tags, comments, search, and a featured gallery. Built with Next.js App Router and Prisma.
+
+## Features
+- Admin-only CRUD for artworks (create, edit, delete, feature)
+- Public browsing with Featured and Latest sections
+- Comments (any signed-in user); author/admin can edit/delete
+- Tag + text search across title/description
+- Cloudinary image upload and cleanup on delete
+- Animated background, cyberpunk UI, responsive grid
+
+## Tech Stack
+- Next.js 15 (App Router) + React 19
+- NextAuth (GitHub Provider)
+- Prisma + PostgreSQL
+- Cloudinary (image hosting)
+- Tailwind CSS v4
+
+## Admin & Authentication
+- Admin is determined by `ADMIN_EMAIL` (or `NEXT_PUBLIC_ADMIN_EMAIL`) in `.env.local`.
+- Only the admin can access CRUD actions and mark art as Featured.
+- Login via GitHub on `/login` or the header Sign In.
+- Admin helpers:
+  - `/admin` for shortcuts
+  - `/artwork/new` to create
+  - `/artwork/[id]/edit` to update
 
 ## Getting Started
-
-First, run the development server:
-
+1. Clone and install
+```bash
+npm i
+```
+2. Env setup (`.env.local`)
+```bash
+DATABASE_URL=postgres://...
+GITHUB_CLIENT_ID=...
+GITHUB_CLIENT_SECRET=...
+ADMIN_EMAIL=you@example.com
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
+```
+3. Prisma
+```bash
+npx prisma generate
+# dev sync
+npx prisma db push
+# or migrations
+# npx prisma migrate dev -n init
+```
+4. Run
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
+Contributions are welcome! Feel free to open issues and PRs.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## License
+MIT. See `LICENSE`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Screenshots
+- Home: Featured + Latest grid
+- Artwork Detail: image, tags, comments, actions
+- Admin: create/edit forms with Featured toggle
 
-## Learn More
+## Feedback
+Have ideas or found a bug? Open an issue or reach out via email.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# Artofolio
-A platform to showcase and explore creative works, including digital art, paintings, and more.
->>>>>>> f131bf15420c3c98c4dbbbddbf36cc5bc22e0c30
