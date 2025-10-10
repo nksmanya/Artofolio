@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Artofolio",
-  description: "Artofolio — a neon-soaked showcase for your drawings and paintings.",
+  description: "Manya's Artwork Portfolio",
   icons: {
     icon: "/favicon.ico",
   },
