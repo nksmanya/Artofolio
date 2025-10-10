@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
           <h3 className="text-cyan-400 font-bold text-lg flex items-center gap-2"><img src="/favicon.ico" alt="Artofolio" className="h-5 w-5" /> Artofolio</h3>
-          <p className="text-gray-400 text-sm mt-2">Where neon meets canvas — showcase your strokes, stories, and stardust.</p>
+          <p className="text-gray-400 text-sm mt-2">Where neon meets canvas 💫 website to showcase my strokes, stories, and stardust.</p>
         </div>
         <div>
           <h4 className="text-cyan-300 font-semibold">Contact</h4>
