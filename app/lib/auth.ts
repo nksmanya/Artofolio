@@ -12,23 +12,19 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    // This new `signIn` callback is the key change.
-    // It checks if the user's email matches the ADMIN_EMAIL from your .env.local file.
+    // This `signIn` callback allows any authenticated GitHub user to sign in.
+    // Admin-only protections remain enforced server-side via `isMainAdmin` / `isAdmin` in API routes.
     async signIn({ user }) {
       const adminEmail = (process.env.ADMIN_EMAIL || "").trim().toLowerCase();
-      
-      // A security check to ensure the ADMIN_EMAIL is set.
+
+      // If ADMIN_EMAIL is not configured, allow sign-ins but warn — safer than blocking everyone.
       if (!adminEmail) {
-        console.error("CRITICAL SECURITY RISK: ADMIN_EMAIL is not set in environment variables. No logins will be allowed.");
-        return false;
+        console.warn("ADMIN_EMAIL not set — allowing sign-ins but no admin will be available.");
+        return true;
       }
 
-      if (user.email && user.email.toLowerCase() === adminEmail) {
-        return true; // If the emails match, allow the sign-in.
-      } else {
-        console.warn(`Unauthorized sign-in attempt by: ${user.email}`);
-        return false; // If they don't match, block the sign-in.
-      }
+      // Allow all authenticated GitHub users to sign in. Server-side routes still check admin status.
+      return true;
     },
     session: ({ session, user }) => ({
       ...session,
