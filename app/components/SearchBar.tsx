@@ -29,20 +29,20 @@ export default function SearchBar() {
   if (!mounted) return null;
 
   return (
-    <form onSubmit={submit} className="hidden md:flex items-center gap-2">
+    <form onSubmit={submit} className="flex flex-col md:flex-row md:items-center gap-2 w-full md:w-auto">
       <input
         value={q}
         onChange={(e) => setQ(e.target.value)}
         placeholder="Search title/desc"
-        className="bg-gray-800/80 border border-cyan-600/50 rounded px-3 py-1 text-sm focus:outline-none focus:border-cyan-400"
+        className="w-full md:w-auto bg-gray-800/80 border border-cyan-600/50 rounded px-3 py-2 text-sm focus:outline-none focus:border-cyan-400"
       />
       <input
         value={tags}
         onChange={(e) => setTags(e.target.value)}
         placeholder="tags (comma)"
-        className="bg-gray-800/80 border border-cyan-600/50 rounded px-3 py-1 text-sm focus:outline-none focus:border-cyan-400"
+        className="w-full md:w-auto bg-gray-800/80 border border-cyan-600/50 rounded px-3 py-2 text-sm focus:outline-none focus:border-cyan-400"
       />
-      <button className="px-3 py-1 bg-cyan-600 border border-cyan-400 rounded text-sm font-bold">Search</button>
+      <button className="w-full md:w-auto px-3 py-2 bg-cyan-600 border border-cyan-400 rounded text-sm font-bold">Search</button>
     </form>
   );
 }
